@@ -1,1 +1,1 @@
-web: gunicorn djangorivers.wsgi
+web: gunicorn DarkSide.wsgi

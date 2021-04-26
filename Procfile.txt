@@ -1,0 +1,1 @@
+web: gunicorn DarkSide.wsgi --log-file -

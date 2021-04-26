@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 
@@ -79,6 +79,8 @@ def make_hand_shadow(request, pk_sith, pk_recruit):
         if (sith.recruit_set.all().count() < 3):
             recruit.teacher = sith
             recruit.save()
+            send_mail('Shadow Hand Test', 'Вы приняты в ряды Ордена! Твой учитель '+sith.name+'. Он найдет тебя, когда придет время.',
+                      'darksidedjango@gmail.com', [recruit.email], fail_silently=False)
     return redirect('sithWay:recruit_detail', pk_sith=sith.id, pk_recruit=recruit.id)
 
 

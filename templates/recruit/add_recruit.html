@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="home-center">
+        <div class="home-desc-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <!-- Форма создания рекрута -->
+                    <form action="{% url 'sithWay:recruit_save' %}" class="form-signin" method="post">
+                    {% csrf_token %}
+                        <!--Шапка формы -->
+                        <div class="text-center mb-4">
+                            <img class="mb-4 white" src="{% static 'images/favicon.svg'%}"
+                                 alt="" width="72" height="72">
+                            <h1 class="h3 mb-3 font-weight-normal text-white">Стать рекрутом</h1>
+                            <p class="text-white">Здесь ты найдешь свое предназначение!</p>
+                        </div>
+                        <!-- Имя рекрута -->
+                        <div class="form-label-group mb-4">
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Имя"
+                                   required
+                                   autofocus>
+                        </div>
+
+                        <!-- Возраст рекрута -->
+                        <div class="form-label-group mb-4">
+                            <input type="text" id="age" name="age" class="form-control" placeholder="Возраст"
+                                   required
+                                   autofocus>
+                        </div>
+                        <!-- Email рекрута-->
+                        <div class="form-label-group mb-4">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Email"
+                                   required
+                                   autofocus>
+                        </div>
+                        <!-- Планета обитания рекрута -->
+                        <div class="form-label-group mb-4">
+                            <label class="text-white" for="selectPlanet">Планета</label>
+                            <select id="planet" class="form-control" name="planet" size="3" aria-label="size 3 select example">
+                                {% for planet in planets_list %}
+                                    <option value="{{ planet.id }}">{{ planet.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button class="btn btn-lg btn-dark btn-block" type="submit">Подтвердить</button>
+
+                    </form>
+                    <!-- Конец формы создания рекрута -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

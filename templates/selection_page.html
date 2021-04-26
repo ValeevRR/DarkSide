@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="home-center">
+        <div class="home-desc-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="text-center mt-5 pt-4">
+                            <h1 class="heading text-white mb-3">Орден приветствует тебя!</h1>
+                            <p class="text-white">Кто ты?</p>
+                            <div class="mt-4 pt-2">
+                                <a href="{% url 'sithWay:recruit_add_page' %}" class="btn btn-dark">Рекрут</a>
+                                <a href="{% url 'sithWay:sith_list' %}" class="btn btn-dark ">Ситх</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

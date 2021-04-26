@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="home-center">
+        <div class="home-desc-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="row text-white w-75 h-75 center">
+                        <div class='col-5'>
+                            <h2>{{ recruit.name }}</h2>
+                            <p>Возраст: {{ recruit.age }}</p>
+                            <p>Планета: {{ recruit.planet.name }}</p>
+                            {% if recruit.teacher %}
+                            <a href="{% url 'sithWay:recruit_make_shadow_hand' sith_pk recruit.id %}"><button type="button" class="btn btn-secondary">Убрать из учеников</button></a>
+                            {% else %}
+                            <a href="{% url 'sithWay:recruit_make_shadow_hand' sith_pk recruit.id %}"><button type="button" class="btn btn-secondary">Сделать рукой тени</button></a>
+                            {% endif %}
+                        </div>
+                        <div class='col-7'>
+                            <h2>Результы испытания:</h2>
+                            {% for answer in answers %}
+                                <h3>Вопрос: {{ answer.question.question }}</h3>
+                                <div class="">
+                                    {% if answer.answer == answer.question.answer %}
+                                        <p class="d-inline">Ответ: {{ answer.answer }}</p>
+                                        <img class ="d-inline white" src="{% static 'images/true-icon.svg'%}">
+                                    {% else %}
+                                        <p class="d-inline">Ответ: {{ answer.answer }}</p>
+                                        <img class="d-inline white" src="{% static 'images/false-icon.svg'%}">
+                                {% endif %}
+                            {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

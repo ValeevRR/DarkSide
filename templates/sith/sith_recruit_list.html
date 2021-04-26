@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column home-center">
+        <div class="row text-white center">
+            <div class="col-6">
+            <h3>Рекруты: </h3>
+                <div class='list-group'>
+                    {% for recruit in recruit_list %}
+                        <a href="{% url 'sithWay:recruit_detail' sith.id recruit.id %}"
+                           class="list-group-item list-group-item-action" aria-current="true">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{ recruit.name }}</h5>
+                            </div>
+                            <p class="mb-1">Возраст: {{ recruit.age }}</p>
+                            <small>Планета: {{ recruit.planet.name }}</small>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-6 ">
+                <h4>{{ sith.name }}</h4>
+                <h4>Планета: {{ sith.planet.name }}</h4>
+                <h3>Ученики: {{ sith.recruit_set.all.count }}</h3>
+                <div class="list-group">
+                    {% for recruit in sith.recruit_set.all %}
+                        <a href="{% url 'sithWay:recruit_detail' sith.id recruit.id %}"
+                           class="list-group-item list-group-item-action" aria-current="true">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{ recruit.name }}</h5>
+                            </div>
+                            <p class="mb-1">Возраст: {{ recruit.age }}</p>
+                            <small>Планета: {{ recruit.planet.name }}</small>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

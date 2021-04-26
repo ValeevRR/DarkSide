@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Рекрутинг темной стороны</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Bootstrap 4 Landing Page Template"/>
+    <meta name="keywords" content="bootstrap 4, premium, clen, modern, landing, multipurpose"/>
+    <meta content="Themesdesign" name="author"/>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.svg' %}">
+    <!-- Magnific -->
+    <link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- css -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/materialdesignicons.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- Slider -->
+    <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}"/>
+
+</head>
+<body>
+<div class="bg-home"
+     style="background-image:url({% static 'images/home/background_choice_page.jpg' %});">
+    <div class="bg-overlay">
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+</div>
+</body>
+
+</html>

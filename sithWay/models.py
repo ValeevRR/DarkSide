@@ -44,21 +44,23 @@ class OrderTest(models.Model):
     class Meta:
         verbose_name = "Орден испытания"
         verbose_name_plural = "Ордены испытания"
+
     def __str__(self):
-        return self.order
+        return str(self.order)
+
 
 class TestQuestion(models.Model):
     order = models.ForeignKey(OrderTest, on_delete=models.CASCADE)
     question = models.TextField(verbose_name="Вопрос испытания")
     answer = models.BooleanField(verbose_name="Правильный ответ")
 
-    def __str__(self):
-        return self.question
-
     class Meta:
         ordering = ('order',)
         verbose_name = "Вопрос испытания"
         verbose_name_plural = "Воспросы испытания"
+
+    def __str__(self):
+        return str(self.question)
 
 
 def get_random_question_list():

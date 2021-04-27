@@ -10,6 +10,9 @@ class Planet(models.Model):
         verbose_name = "Планета"
         verbose_name_plural = " Планеты"
 
+    def __str__(self):
+        return self.name
+
 
 class Sith(models.Model):
     name = models.CharField(max_length=40, verbose_name="Имя ситха")
@@ -18,6 +21,9 @@ class Sith(models.Model):
     class Meta:
         verbose_name = "Ситх"
         verbose_name_plural = "Ситхи"
+
+    def __str__(self):
+        return self.name
 
 
 class Recruit(models.Model):
@@ -61,7 +67,7 @@ def get_random_question_list():
 
 class RecruitAnswer(models.Model):
     recruit = models.ForeignKey(Recruit, on_delete=models.CASCADE, verbose_name="Рекрут")
-    answer = models.BooleanField(verbose_name="Ответ", blank=True,null=True)
+    answer = models.BooleanField(verbose_name="Ответ", blank=True, null=True)
     question = models.ForeignKey(TestQuestion, models.CASCADE, verbose_name="Вопрос")
 
     class Meta:

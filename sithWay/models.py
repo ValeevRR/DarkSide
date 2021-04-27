@@ -44,7 +44,8 @@ class OrderTest(models.Model):
     class Meta:
         verbose_name = "Орден испытания"
         verbose_name_plural = "Ордены испытания"
-
+    def __str__(self):
+        return self.order
 
 class TestQuestion(models.Model):
     order = models.ForeignKey(OrderTest, on_delete=models.CASCADE)

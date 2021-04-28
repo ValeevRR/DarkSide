@@ -7,6 +7,8 @@ from sithWay.forms import RecruitForm
 from sithWay.models import *
 
 
+from django.views.generic import ListView
+
 #  Отображение страницы выбора Рекрут/Ситх
 def selection_page(request):
     return render(request, 'selection_page.html')
@@ -52,9 +54,14 @@ def recruit_test(request, pk):
     return render(request, 'recruit/testHandShadow.html', {'formset': formset, 'recruit': recruit})
 
 
-def sith_list(request):
-    sith_list = Sith.objects.all()
-    return render(request, 'sith/sith_list.html', {'sith_list': sith_list})
+class SithListView(ListView):
+    model = Sith
+    template_name = 'sith/sith_list.html'
+
+
+# def sith_list(request):
+#     sith_list = Sith.objects.all()
+#     return render(request, 'sith/sith_list.html', {'sith_list': sith_list})
 
 
 def sith_recruit_list(request, pk_sith):
@@ -83,11 +90,22 @@ def make_hand_shadow(request, pk_sith, pk_recruit):
                       'darksidedjango@gmail.com', [recruit.email], fail_silently=False)
     return redirect('sithWay:recruit_detail', pk_sith=sith.id, pk_recruit=recruit.id)
 
+class SithListMoreThanOne(ListView):
+    model = Sith
+    context_object_name = 'sith_list'
+    template_name = 'sith/sith_list.html'
 
-def sith_list_filtered(request):
-    sith_all_list = Sith.objects.all()
-    sith_list = []
-    for sith in sith_all_list:
-        if sith.recruit_set.all().count() > 1:
-            sith_list.append(sith)
-    return render(request, 'sith/sith_list_filtered.html', {'sith_list': sith_list})
+    def get_queryset(self):
+        sith_all_list = Sith.objects.all()
+        queryset = []
+        for sith in sith_all_list:
+            if sith.recruit_set.all().count() > 1:
+                queryset.append(sith)
+        return queryset
+# def sith_list_filtered(request):
+#     sith_all_list = Sith.objects.all()
+#     sith_list = []
+#     for sith in sith_all_list:
+#         if sith.recruit_set.all().count() > 1:
+#             sith_list.append(sith)
+#     return render(request, 'sith/sith_list_filtered.html', {'sith_list': sith_list})
